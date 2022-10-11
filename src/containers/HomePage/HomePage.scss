@@ -1,0 +1,183 @@
+
+
+
+ .slick-prev {
+    border : 1px solid red !important;
+    // position: relative !important;
+    left: -10px !important;
+    width: 44px !important;
+    height: 48px !important;
+    z-index: 100;
+    border: 2px solid #d7d7d7 !important;
+    &:hover {
+        background:#eceaea !important;
+    }
+}
+
+.slick-prev::before,
+.slick-next::before
+ {
+    font-family: FontAwesome !important;
+    color: red !important;
+}
+
+.slick-next {
+    border : 1px solid red !important;
+    right: -10px !important;
+    width: 44px !important;
+    height: 48px !important;
+    z-index: 100;
+    border: 2px solid #d7d7d7 !important;
+    &:hover {
+        background:#eceaea !important;
+    }
+}
+
+.section-share {
+    &.section-specialty {
+        background: #f5f5f5f5;
+    }
+    &.section-outstanding-doctor{
+        background: #f5f5f5f5;
+    }
+    &.section-about{
+        
+        height: 500px !important;
+    }
+
+    .section-body {
+        .section-customize{
+            .bg-image{
+                width: 278px;
+                height: 158px;
+                background-size:cover; 
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-color: #eee;
+
+                &.section-specialty {
+                    background-image: url('../../assets/specialty/co-xuong-khop.jpg');
+
+                }
+
+                &.section-medical-facility {
+                    background-image: url('../../assets/medical-facility/benh-vien-thu-cuc.jpg');
+                }
+
+                &.section-outstanding-doctor {
+                    background-image: url('../../assets/outstanding-doctor/outstanding-doctor.jpg');
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 50%;
+                }
+
+                &.section-handbook {
+                    background-image: url('../../assets/handbook/handbook.png');
+                }
+            }
+            .specialty-title {
+                color: #111;
+                padding: 5px 0;
+                font-size: 13px;
+                cursor: pointer;
+                &:hover {
+                    color:#45c3d2 ;
+                }
+            }
+        }
+    }
+
+}   
+.section-share {
+    height: 330px;
+
+    .section-container{
+        margin: 0 180px;
+        display: flex;
+        flex-direction: column;
+
+        .section-header{
+            height: 60px;
+            padding-top: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .title-section {
+                font-size: 24px;
+                font-weight: bold;
+                padding: 15px 0px 5px 0px;
+            
+            }
+            .btn-section {
+                background: #ebebeb;
+                text-transform: uppercase;
+                display: inline-block;
+                padding: 10px 15px;
+                color: #282e41;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                &:hover {
+                    color: #fff;
+                    background: #f7d800;
+                }
+            }
+        }     
+    }
+}
+
+.section-outstanding-doctor{
+    .outer-bg {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    .section-customize {
+        padding: 5px;
+
+        .customize-border {
+            border: 1px solid orangered;
+            padding: 20px;
+        }
+    }
+
+}
+
+.section-about {
+    padding:0 180px;
+    border-top:1px solid red;
+    border-bottom:1px solid red;
+
+    .section-about-header {
+        font-size: 24px;
+        font-weight: bold;
+        padding: 20px 10px;
+    }
+    .section-about-content {
+        display: flex;
+        gap: 15px;
+        width: 100%;
+        
+        .content-left {
+            width: 50%;
+        }
+        .content-right {
+            width: 50%;
+            p {
+                font-size: 24px;
+                font-style: italic;
+                padding-top: 15px;
+            }
+        }
+    }
+}
+
+.home-footer {
+    text-align: center;
+    padding-top: 8px;
+    
+    a{
+        text-decoration: none;
+    }
+}
