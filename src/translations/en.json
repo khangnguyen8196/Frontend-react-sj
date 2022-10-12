@@ -35,5 +35,19 @@
             "handbook": "Handbook ",
             "manage-handbook": "Manage handbook"
         }
+    },
+    "manage-user": {
+        "add":"Add a new user",
+        "email":"Email",
+        "password":"Password",
+        "first-name":"First Name",
+        "last-name":"Last Name",
+        "address":"Address",
+        "phone-number":"Phone Number",
+        "gender":"Gender",
+        "position":"Position",
+        "role":"Role",
+        "image":"Avatar",
+        "save":"Save"
     }
 }
