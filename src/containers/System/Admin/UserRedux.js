@@ -1,4 +1,4 @@
-import { add } from 'lodash';
+
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
@@ -15,6 +15,7 @@ class UserRedux extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isLoadingGender: false,
             genderArr:[],
             positionArr:[],
             roleArr:[],
@@ -38,7 +39,7 @@ class UserRedux extends Component {
         }
     }
 
-    async componentDidMount() {
+        async componentDidMount() {
         this.props.getGenderStart();
         this.props.getPositionStart();
         this.props.getRoleStart();
@@ -59,7 +60,7 @@ class UserRedux extends Component {
             let arrGenders = this.props.genderRedux
             this.setState({
                 genderArr:arrGenders,
-                gender:arrGenders && arrGenders.length > 0 ? arrGenders[0].key : ''
+                gender:arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : ''
             })
         }
         // position
@@ -67,7 +68,7 @@ class UserRedux extends Component {
             let arrPositions =this.props.positionRedux
             this.setState({
                 positionArr:arrPositions,
-                position:arrPositions && arrPositions.length > 0 ? arrPositions[0].key :''
+                position:arrPositions && arrPositions.length > 0 ? arrPositions[0].keyMap :''
             })
         }
         // role
@@ -75,7 +76,7 @@ class UserRedux extends Component {
             let arrRoles =this.props.roleRedux
             this.setState({
                 roleArr:arrRoles,
-                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key :''
+                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap :''
             })
         }
         if(prevProps.listUsers !== this.props.listUsers){
@@ -212,8 +213,8 @@ handleEditUserFromParent = (user) => {
         let isLoadingGender = this.props.isLoadingGender;
         
         let {email, password, firstName, lastName, phoneNumber, 
-            address, gender, position, role, avatar
-        }= this.state;
+            address, gender, position, role,avatar
+        } = this.state;
         return (
             <div className="user-redux-container">
                 <div className="title">
@@ -225,7 +226,7 @@ handleEditUserFromParent = (user) => {
                             <div className="col-12 my-3">
                                <FormattedMessage id="manage-user.add"/>
                             </div>
-                            <div className="col-12 text-center">{isLoadingGender===true ? 'Loading' :""}</div>
+                            <div className="col-12 text-center">{isLoadingGender===true ? 'Loading' :''}</div>
                             <div className="col-3">
                                 <label><FormattedMessage id="manage-user.email"/></label>
                                 <input className="form-control" type='email'
@@ -279,7 +280,7 @@ handleEditUserFromParent = (user) => {
                                     {genders && genders.length > 0 &&
                                         genders.map((item, index)=> {
                                             return (
-                                                <option key={index} value={item.key}>{language === LANGUAGES.VI ?item.valueVi : item.valueEn}</option>
+                                                <option key={index} value={item.keyMap}>{language === LANGUAGES.VI ?item.valueVi : item.valueEn}</option>
                                             )
                                         })
                                     
@@ -295,7 +296,7 @@ handleEditUserFromParent = (user) => {
                                     {positions && positions.length > 0 &&
                                         positions.map((item, index)=> {
                                             return (
-                                                <option key={index} value={item.key}>{language === LANGUAGES.VI ?item.valueVi : item.valueEn}</option>
+                                                <option key={index} value={item.keyMap}>{language === LANGUAGES.VI ?item.valueVi : item.valueEn}</option>
                                             )
                                         })
                                     
@@ -311,7 +312,7 @@ handleEditUserFromParent = (user) => {
                                     {roles && roles.length > 0 &&
                                             roles.map((item, index)=> {
                                                 return (
-                                                    <option key={index} value={item.key}>{language === LANGUAGES.VI ?item.valueVi : item.valueEn}</option>
+                                                    <option key={index} value={item.keyMap}>{language === LANGUAGES.VI ?item.valueVi : item.valueEn}</option>
                                                 )
                                             })
                                         
@@ -372,8 +373,8 @@ const mapStateToProps = state => {
         language: state.app.language,
         genderRedux: state.admin.genders,
         positionRedux: state.admin.positions,
-        roleRedux: state.admin.roles,
         isLoadingGender: state.admin.isLoadingGender,
+        roleRedux: state.admin.roles,
         listUsers:state.admin.users
     };
 };

@@ -1,5 +1,5 @@
 import actionTypes from './actionTypes';
-import { getAllCodeService, createNewUserService, getAllUsers,deleteUserService, editUserService } from '../../services/userService';
+import { getAllCodeService, createNewUserService, getAllUsers,deleteUserService, editUserService,getTopDoctorHomeService } from '../../services/userService';
 import { ToastContainer, toast } from 'react-toastify';
 
 
@@ -90,7 +90,8 @@ export const createNewUser = (data)=>{
     return async(dispatch,getState) => {
         try {
                 let res = await createNewUserService(data);
-                    toast.success('Create a new user success')
+                    toast.success('Create a new user success')     
+                    // console.log('hoi dan it check create user redux:', res);
                 if (res && res.errCode === 0){
                     dispatch(saveUserSuccess())
                     dispatch(fetchAllUsersStart())
@@ -113,7 +114,7 @@ export const saveUserFailed = () => ({
     type:actionTypes.CREATE_USER_FAILED
 })
 
-// edit users
+// // edit users
 export const editAUser = (userId)=>{
     return async(dispatch,getState) => {
         try {
@@ -143,12 +144,14 @@ export const editUserFailed = () => ({
 })
 
 
-//get all users
+// //get all users
 
 export const fetchAllUsersStart =()=>{ 
     return async(dispatch,getState) => {
         try {
                 let res = await getAllUsers ("ALL")
+                let res1 =await getTopDoctorHomeService(3)
+                console.log(' hoitaodimay check res1 get top doctor ',res1)
                 if (res && res.errCode === 0){
                     dispatch(fetchAllUsersSuccess(res.users.reverse()))
                 }else {
@@ -195,3 +198,26 @@ export const deleteUserSuccess =() => ({
 export const deleteUserFailed =() => ({
     type:actionTypes.DELETE_USER_FAILED
 })
+
+export const fetchTopDoctor =() => {
+    return async (dispatch,getState) => {
+        try {
+            let res = await getTopDoctorHomeService('3')   
+            if (res && res.errCode ===0) {
+                dispatch({
+                    type: actionTypes.FETCH_TOP_DOCTOR_SUCCESS,
+                    dataDocrors: res.data
+                })
+            } else {
+                dispatch({
+                    type: actionTypes.FETCH_TOP_DOCTOR_FAILED
+                })
+            }
+        }catch (e) {
+            console.log ('FETCH_TOP_DOCTOR_FAILED:',e)
+            dispatch({
+                type: actionTypes.FETCH_TOP_DOCTOR_FAILED
+            })
+        }
+        }
+}
