@@ -1,7 +1,7 @@
 import actionTypes from './actionTypes';
 import { getAllCodeService, createNewUserService, getAllUsers,deleteUserService,
  editUserService,getTopDoctorHomeService, getAllDoctors,saveDetailDoctorService } from '../../services/userService';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 
 export const fetchGenderStart =()=>{ 
