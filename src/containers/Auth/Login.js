@@ -65,6 +65,11 @@ class Login extends Component {
             isShowPassword:!this.state.isShowPassword,
        })
     }
+    handleKeyDown = (e) => {
+        if (e.keyCode === 13 || e.key === "Enter"){
+            this.handleLogin();
+        }
+    }
     render() {
            return (
             
@@ -95,7 +100,8 @@ class Login extends Component {
                                     className="form-control" 
                                     placeholder='Enter your password'
                                     value={this.state.password}
-                                    onChange={(e) =>this.handleOnchangePassword(e)}
+                                    onChange={(e) => this.handleOnchangePassword(e)}
+                                    onKeyDown={(e) => this.handleKeyDown(e)}
                                     />
                             </div>
                            
