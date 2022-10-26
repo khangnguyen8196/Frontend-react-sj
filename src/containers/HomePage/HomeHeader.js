@@ -20,9 +20,9 @@ class HomeHeader extends Component {
     }
 
     render() {
-        console.log('check props',this.props)
+        // console.log('check props',this.props)
         let language = this.props.language
-        console.log('check userInfo',this.props.userInfo)
+        // console.log('check userInfo',this.props.userInfo)
         return (
 
                <>

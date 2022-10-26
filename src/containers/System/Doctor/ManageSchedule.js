@@ -135,8 +135,8 @@ class ManageSchedule extends Component {
         doctorId: selectedDoctor.value,
         formatedDate: formatedDate
     })
-    console.log(' hoi tao di channel check res:saveBulkScheduleDoctor', res)
-    console.log(' check result',result)
+    // console.log(' hoi tao di channel check res:saveBulkScheduleDoctor', res)
+    // console.log(' check result',result)
 
   }
     render() {

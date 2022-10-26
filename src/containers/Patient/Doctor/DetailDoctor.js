@@ -4,6 +4,8 @@ import HomeHeader from '../../HomePage/HomeHeader';
 import './DetailDoctor.scss';
 import {getDetailInforDoctorService} from '../../../services/userService'
 import { LANGUAGES } from '../../../utils';
+import DoctorSchedule from './DoctorSchedule';
+
 class DetailDoctor extends Component {
     constructor(props) {
         super(props);
@@ -29,7 +31,7 @@ class DetailDoctor extends Component {
 
     }
     render() {
-        console.log(' hoi tao di channel',this.state)
+        // console.log(' hoi tao di channel',this.state)
         let { language } = this.props
         let {detailDoctor} = this.state;
         let nameVi='', nameEn ='';
@@ -61,7 +63,14 @@ class DetailDoctor extends Component {
                         </div>
                      </div>
                      <div className="schedule-doctor">
+                        <div className="content-left">
+                            <DoctorSchedule
+                               doctorIdFromParent={detailDoctor && detailDoctor.id ? detailDoctor.id : -1}
+                            />
+                        </div>
+                        <div className="content-right">
 
+                        </div>
                      </div>
                      <div className="detail-infor-doctor">
                             {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.contentHTML && 
