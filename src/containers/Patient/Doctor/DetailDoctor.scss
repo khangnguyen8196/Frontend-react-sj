@@ -30,8 +30,9 @@
     .schedule-doctor {
         margin :10px 170px;
         display: flex;
-        height: 200px;
-        border: 1px solid red;
+        padding: 10px 0;
+        min-height: 200px;
+        
 
         .content-left {
             width: 50%;
