@@ -1,6 +1,6 @@
 .booking-modal-container {
     .booking-modal-content {
-        height: 500px;
+        min-height: auto;
         display: flex;
         flex-direction: column;
         .booking-modal-header{
