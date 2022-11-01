@@ -11,6 +11,7 @@ import Select from 'react-select';
 import { LANGUAGES } from '../../../../utils';
 import {postPatientBookAppointment} from '../../../../services/userService';
 import { toast } from 'react-toastify';
+import moment from 'moment';
 
 
 class BookingModal extends Component {
@@ -90,8 +91,58 @@ class BookingModal extends Component {
         this.setState({ selectedGender:selectedOption })
     }
 
+    capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    buildTimeBooking = (dataTime) => {
+        let {language} = this.props;
+        if (dataTime && !_.isEmpty(dataTime)) {
+            let time = language === LANGUAGES.VI ? 
+            dataTime.timeTypeData.valueVi : dataTime.timeTypeData.valueEn;
+            let date = language === LANGUAGES.VI ?
+            this.capitalizeFirstLetter (moment.unix(+dataTime.date/1000).format('dddd - DD/MM/YYYY'))  
+            :
+            moment.unix(+dataTime.date/1000).locale('en').format('dddd - DD/MM/YYYY');  
+
+            return `${time} - ${date}`          
+        }
+        return '';
+    }
+
+    buildDoctorName = (dataTime) => {
+        let {language} = this.props;
+        if (dataTime && !_.isEmpty(dataTime)) {
+            let name = language === LANGUAGES.VI ? 
+            `${dataTime.doctorData.lastName} ${dataTime.doctorData.firstName}`
+            :
+            `${dataTime.doctorData.firstName} ${dataTime.doctorData.lastName}`
+
+            return name;          
+        }
+        return '';
+    }
+
+    checkValidInput =() =>{
+            let isValid = true;
+            let arrCheck = ['fullName', 'phoneNumber', 'email', 'address', 'reason', 
+                'selectedGender']
+                for (let i = 0; i < arrCheck.length; i++){
+                    if(!this.state[arrCheck[i]]){
+                        isValid = false;
+                        alert(' this input is required:' +arrCheck[i]);
+                        break;
+                    }
+                }
+                return isValid;
+        }
+
     handleConfirmBooking = async() => {
-        // validate input !data.email || !data.doctorId || !data.timeType || !data.date
+        
+        let isValid= this.checkValidInput()
+        if(isValid === false) return;
+        let timeString =this.buildTimeBooking(this.props.dataTime);
+        let doctorName = this.buildDoctorName(this.props.dataTime)
         let date = new Date(this.state.birthday).getTime();
         let res = await postPatientBookAppointment({
             
@@ -104,6 +155,9 @@ class BookingModal extends Component {
             selectedGender:this.state.selectedGender.value,
             doctorId:this.state.doctorId,
             timeType:this.state.timeType,
+            language:this.props.language,
+            timeString:timeString,
+            doctorName:doctorName,
            
         })
         if (res && res.errCode === 0){
@@ -120,9 +174,9 @@ class BookingModal extends Component {
         let doctorId =''
         if(dataTime && !_.isEmpty(dataTime)){
             doctorId = dataTime.doctorId;
-      }
+        }
     //   let doctorId = dataTime && !_.isEmpty(dataTime) ? dataTime.doctorId : '';
-        // console.log (' data props from modal:', this.props)
+        console.log (' check datatime:', dataTime)
         return (
             <Modal 
             isOpen={isOpenModal} 
