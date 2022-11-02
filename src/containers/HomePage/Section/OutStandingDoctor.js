@@ -6,11 +6,6 @@ import { LANGUAGES } from '../../../utils';
 import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
 
-
-
-
-
-
 class OutStandingDoctor extends Component {
     constructor(props) {
         super(props)
@@ -68,7 +63,7 @@ class OutStandingDoctor extends Component {
                                             </div>
                                                 <div className="position text-center">
                                                     <div className="specialty-title">{language === LANGUAGES.VI ? nameVi :nameEn}</div>
-                                                    <div>Cơ xương khớp 1</div>
+                                                    <div>Cơ xương khớp </div>
                                                 </div>
                                         </div> 
                                     </div>
