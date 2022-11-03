@@ -213,7 +213,7 @@ handleEditUserFromParent = (user) => {
         let isLoadingGender = this.props.isLoadingGender;
         
         let {email, password, firstName, lastName, phoneNumber, 
-            address, gender, position, role,avatar
+            address, gender, position, role, avatar
         } = this.state;
         return (
             <div className="user-redux-container">

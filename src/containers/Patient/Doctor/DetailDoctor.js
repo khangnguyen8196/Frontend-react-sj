@@ -5,7 +5,7 @@ import './DetailDoctor.scss';
 import {getDetailInforDoctorService} from '../../../services/userService'
 import { LANGUAGES } from '../../../utils';
 import DoctorSchedule from './DoctorSchedule';
-import DoctorExtraInfor from './DoctorExtraInfor'
+import DoctorExtraInfor from './DoctorExtraInfor';
 
 class DetailDoctor extends Component {
     constructor(props) {

@@ -1,6 +1,8 @@
 import actionTypes from './actionTypes';
 import { getAllCodeService, createNewUserService, getAllUsers,deleteUserService,
- editUserService,getTopDoctorHomeService, getAllDoctors,saveDetailDoctorService } from '../../services/userService';
+ editUserService,getTopDoctorHomeService, getAllDoctors,saveDetailDoctorService,
+ getAllSpecialty,
+} from '../../services/userService';
 import { toast } from 'react-toastify';
 
 
@@ -94,8 +96,8 @@ export const createNewUser = (data)=>{
                     toast.success('Create a new user success')     
                     // console.log('hoi dan it check create user redux:', res);
                 if (res && res.errCode === 0){
-                    dispatch(saveUserSuccess())
-                    dispatch(fetchAllUsersStart())
+                    dispatch(await saveUserSuccess())
+                    dispatch(await fetchAllUsersStart())
                 }else {
                     toast.error('Create a new user error!')
                     dispatch(saveUserFailed());
@@ -255,13 +257,13 @@ export const saveDetailDoctor =(data) => {
         try {
             let res = await saveDetailDoctorService(data);
             if (res && res.errCode ===0) {
-                toast.success('Save a new user success')
+                toast.success('Save infor success')
                 dispatch({
                     type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
                     dataDr: res.data
                 })
             } else {
-                toast.error('Save a new user error')
+                toast.error('Save infor error')
                 dispatch({
                     type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED
                 })
@@ -309,17 +311,22 @@ export const getAllRequiredDoctorInfor =()=>{
                 dispatch({
                     type:actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_START
                 })
-                let resPrice = await getAllCodeService ("PRICE")
-                let resPayment = await getAllCodeService ("PAYMENT")
-                let resProvince = await getAllCodeService ("PROVINCE")
+                let resPrice = await getAllCodeService ("PRICE");
+                let resPayment = await getAllCodeService ("PAYMENT");
+                let resProvince = await getAllCodeService ("PROVINCE");
+                let resSpecialty = await getAllSpecialty();
+
+
                 if (resPrice && resPrice.errCode === 0 &&
                     resPayment && resPayment.errCode === 0 &&
-                    resProvince && resProvince.errCode === 0
+                    resProvince && resProvince.errCode === 0 &&
+                    resSpecialty && resSpecialty.errCode === 0
                     ){
                     let data = {
                         resPrice: resPrice.data,
                         resPayment: resPayment.data,
-                        resProvince: resProvince.data
+                        resProvince: resProvince.data,
+                        resSpecialty: resSpecialty.data,
                     }
                     dispatch(fetchRequiredDoctorInforSuccess(data))
                 }else {

@@ -72,7 +72,7 @@ class ProfileDoctor extends Component {
 
    
     render() {
-        let { language,isShowDescriptionDoctor, dataTime } = this.props
+        let { language,isShowDescriptionDoctor, dataTime, isShowPriceDoctor} = this.props
         let {dataProfile} = this.state;
         let nameVi='', nameEn ='';
         if( dataProfile && dataProfile.positionData){
@@ -110,7 +110,9 @@ class ProfileDoctor extends Component {
                             </div>
                 </div>
                 <div className="price">
-                <FormattedMessage id="patient.extra-infor-doctor.price" />: 
+                    {isShowPriceDoctor === true && 
+                        <>
+                        <FormattedMessage id="patient.extra-infor-doctor.price" />:
                         {dataProfile && dataProfile.Doctor_Infor && language === LANGUAGES.VI &&
                         <NumberFormat 
                         className="currency"
@@ -127,6 +129,8 @@ class ProfileDoctor extends Component {
                         thousandSeparator={true} 
                         suffix={'$'} />
                         }
+                        </>
+                    }
                 </div>
              </div>
         )
