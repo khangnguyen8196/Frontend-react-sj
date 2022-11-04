@@ -7,6 +7,7 @@ import { LANGUAGES } from '../../../utils';
 import NumberFormat from 'react-number-format';
 import _ from 'lodash';
 import moment from 'moment/moment';
+import { Link } from 'react-router-dom';
 
 
 
@@ -72,14 +73,14 @@ class ProfileDoctor extends Component {
 
    
     render() {
-        let { language,isShowDescriptionDoctor, dataTime, isShowPriceDoctor} = this.props
+        let { language,isShowDescriptionDoctor, dataTime, isShowPrice, isShowLinkDetail, doctorId} = this.props
         let {dataProfile} = this.state;
         let nameVi='', nameEn ='';
         if( dataProfile && dataProfile.positionData){
             nameVi= `${dataProfile.positionData.valueVi}, ${dataProfile.lastName} ${dataProfile.firstName}`;
             nameEn= `${dataProfile.positionData.valueEn}, ${dataProfile.firstName} ${dataProfile.lastName}`;
         }
-        console.log ('hoitaodi check props:',dataTime);
+        // console.log ('hoitaodi check props:',dataTime);
         return (
             <div className="profile-doctor-container">
                 <div className="intro-doctor">
@@ -109,9 +110,14 @@ class ProfileDoctor extends Component {
                                 </div>
                             </div>
                 </div>
-                <div className="price">
-                    {isShowPriceDoctor === true && 
-                        <>
+                {isShowLinkDetail ===true && 
+                    <div className="view-detail-doctor">
+                       <Link to ={`/detail-doctor/${doctorId}`}>Xem thêm</Link>               
+                    </div>
+                 }
+                {isShowPrice === true && 
+                    <div className="price">
+                    
                         <FormattedMessage id="patient.extra-infor-doctor.price" />:
                         {dataProfile && dataProfile.Doctor_Infor && language === LANGUAGES.VI &&
                         <NumberFormat 
@@ -129,10 +135,10 @@ class ProfileDoctor extends Component {
                         thousandSeparator={true} 
                         suffix={'$'} />
                         }
-                        </>
-                    }
-                </div>
-             </div>
+                        
+                    </div>
+                }
+            </div>
         )
     }
            

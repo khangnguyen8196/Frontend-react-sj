@@ -92,9 +92,7 @@ class ManageDoctor extends Component {
         if(type ==='SPECIALTY'){
             inputData.map((item, index) => {
                 let object ={};
-                let labelVi =`${item.name}`;
-                let labelEn =`${item.name}`;
-                object.label = language === LANGUAGES.VI ? labelVi : labelEn;
+                object.label = item.name
                 object.value = item.id;
                 result.push(object);
             })
@@ -227,6 +225,10 @@ class ManageDoctor extends Component {
                 addressClinic:'',
                 nameClinic: '',
                 note:'',
+                selectedPayment:'',
+                selectedPrice:'',
+                selectedProvince:'',
+                selectedSpecialty:'',
             })
         }
         //   console.log(`Option selected:`, this.state.selectedOption)

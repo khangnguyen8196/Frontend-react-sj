@@ -166,7 +166,7 @@ class BookingModal extends Component {
         }else {
             toast.error('Booking a new appointment fail')
         }
-        console.log( ' check state inside booking modal:', this.state)
+        // console.log( ' check state inside booking modal:', this.state)
     }
     render() {
        
@@ -176,7 +176,7 @@ class BookingModal extends Component {
             doctorId = dataTime.doctorId;
         }
     //   let doctorId = dataTime && !_.isEmpty(dataTime) ? dataTime.doctorId : '';
-        console.log (' check datatime:', dataTime)
+        // console.log (' check datatime:', dataTime)
         return (
             <Modal 
             isOpen={isOpenModal} 
@@ -199,7 +199,8 @@ class BookingModal extends Component {
                             <ProfileDoctor
                             doctorId= {doctorId}
                             isShowDescriptionDoctor={false}
-                            isShowPriceDoctor = {true}
+                            isShowPrice={true}
+                            isShowLinkDetail={false}
                             dataTime={dataTime}
                             />
                         </div>

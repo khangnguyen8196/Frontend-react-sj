@@ -1,10 +1,29 @@
 .detail-specialty-container {
     .detail-specialty-body {
-        margin:0 170px;
+        padding:0 170px;
+        background: #eee;
+        display: flex;
+        flex-direction: column;
     }
     .description-specialty {
-        border: 1px solid blue;
-        height: 200px;
+        background-color: white !important;
+        padding:10px;
+        margin:15px 0;
+        min-height: 200px;
+        h1, h2, h3 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+    .search-sp-doctor {
+        select {
+            height: 30px;
+            padding: 5px 8px ;
+            border: none;
+            outline: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
     }
 
     .each-doctor {
